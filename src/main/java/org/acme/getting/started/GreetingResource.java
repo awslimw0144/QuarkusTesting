@@ -1,5 +1,8 @@
 package org.acme.getting.started;
 
+import org.jboss.resteasy.annotations.jaxrs.PathParam;
+
+import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -7,9 +10,20 @@ import javax.ws.rs.core.MediaType;
 
 @Path("/index")
 public class GreetingResource {
+
+    @Inject
+    GreetingService greetingServiceq;
+
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String hello() {
-        return "hello";
+        return "Hello. This is the main page. Send keys over to this page to go to greeting page";
+    }
+
+    @GET
+    @Produces(MediaType.TEXT_PLAIN)
+    @Path("/greeting/{name}")
+    public String greeting( @PathParam String name) {
+        return greetingServiceq.greeting(name);
     }
 }
