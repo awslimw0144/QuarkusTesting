@@ -5,12 +5,11 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-@Path("/hello")
+@Path("/index")
 public class GreetingResource {
-
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String hello() {
-        return "biggo";
+        return "hello";
     }
 }
